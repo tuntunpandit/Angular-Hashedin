@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand company-logo" href="#">
+        <img src="assets/images/logo.png" alt="Hashedin Logo"  style="height: 40px; width: 150px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"  (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span> 
+    </button>
+    <div class="collapse navbar-collapse flex-row-reverse" [ngClass]="{ 'show': navbarOpen }" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a [routerLink]="['/courses']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link text-white spacing" aria-current="page">Courses</a>
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/wishlist']" routerLinkActive="active" class="nav-link text-white spacing">My Wishlist</a>
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/cart']" routerLinkActive="active" class="nav-link text-white spacing"><i class="fa fa-cart-plus"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link text-white spacing"><i class="fa fa-user-circle"></i></a>
+                  </li>
+                <li class="nav-item">
+                    <a routerLinkActive="active" class="nav-link text-white spacing"><i class="fa fa-sign-out" (click)="logout()"></i></a>
+                  </li>
+              </ul>
+        </div>
+    </div>
+</nav>
