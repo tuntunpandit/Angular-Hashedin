@@ -59,4 +59,7 @@ export class MainService {
     return of(wishlisted);
   }
 
+  getUserProfileData(): Observable<any> {
+    return this._http.get("./assets/user.json");
+  }
 }
