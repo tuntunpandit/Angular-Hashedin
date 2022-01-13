@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand company-logo" href="#">
+      <a [routerLink]="['/']" routerLinkActive="active" class="nav-link text-white spacing">
         <img src="assets/images/logo.png" alt="Hashedin Logo"  style="height: 40px; width: 150px;">
+      </a>     
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"  (click)="toggleNavbar()">
