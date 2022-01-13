@@ -1,1 +1,126 @@
-<p>user-profile works!</p>
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-3">
+            <div class="img-wrapper d-flex justify-content-center mt-3">
+                <img src="assets/images/user-img.png" alt="user" class="img-fluid">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card p-4">
+                <form>
+                    <div class="row">
+                      <div class="form-group mt-3 col-md-4">
+                        <label class="mb-1" for="userName">User Name</label>
+                        <input type="text" class="form-control" id="userName" placeholder="username">
+                      </div>
+                      <div class="form-group mt-3 col-md-4">
+                        <label class="mb-1" for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="first name">
+                      </div>
+                      <div class="form-group mt-3 col-md-4">
+                        <label class="mb-1" for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="last name">
+                      </div>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label class="mb-1" for="about">About Yourself</label>
+                      <textarea type="text" rows="5" class="form-control" id="about"></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="mb-2">Your Area of Interest</label>
+                        <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" value="designer" id="designer1">
+                            <label class="form-check-label" for="designer1">
+                              Designer
+                            </label>
+                          </div>
+                          <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" value="" id="developer1" checked>
+                            <label class="form-check-label" for="developer1">
+                              Developer
+                            </label>
+                          </div>
+                          <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" value="" id="projectManager1">
+                            <label class="form-check-label" for="projectManager1">
+                              Project Manager
+                            </label>
+                          </div>
+                          <div class="form-check mt-1">
+                            <input class="form-check-input" type="checkbox" value="" id="sales1">
+                            <label class="form-check-label" for="sales1">
+                              Sales
+                            </label>
+                          </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="mb-2">Are you a Student or Professional?</label>
+                        <div class="form-check mt-1">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Student
+                            </label>
+                          </div>
+                          <div class="form-check mt-1">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Professional
+                            </label>
+                          </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="mb-2">How much of experience you have?</label>
+                        <div class="row mx-0">
+                            <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="zeroToFive" id="zeroToFive1">
+                                <label class="form-check-label" for="zeroToFive1">
+                                  0-5
+                                </label>
+                              </div>
+                              <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="fiveToTen" id="fiveToTen2" checked>
+                                <label class="form-check-label" for="fiveToTen2">
+                                  5-10
+                                </label>
+                              </div>
+                              <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="tenAndAbove" id="tenAndAbove2">
+                                <label class="form-check-label" for="tenAndAbove2">
+                                  10 & above
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label class="mb-2">What is your expertise</label>
+                        <div class="row mx-0">
+                            <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="java" id="java1">
+                                <label class="form-check-label" for="java1">
+                                  Java
+                                </label>
+                              </div>
+                              <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="angular" id="angular2">
+                                <label class="form-check-label" for="angular2">
+                                  Angular
+                                </label>
+                              </div>
+                              <div class="form-check mt-1 col-md-4">
+                                <input class="form-check-input" type="radio" name="python" id="python2" checked>
+                                <label class="form-check-label" for="python2">
+                                  Python
+                                </label>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 col-md-6">
+                        <label class="mb-1" for="role">Your Role</label>
+                        <input type="text" class="form-control" id="role" placeholder="mention your role">
+                      </div>
+                    <button type="submit" class="btn btn-warning mt-4 w-25">Save</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

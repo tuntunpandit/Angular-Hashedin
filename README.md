@@ -43,13 +43,18 @@ Open your terminal and type these:
       <img src="src/assets/screenshots/login.png" width="90%" title="login">
     </div>
 
-2. **All Corses Page**
+2. **All Courses Page**
     <div>
-      <img src="src/assets/screenshots/courses.png" width="90%" title="courses">
+      <img src="src/assets/screenshots/dashboard-1.png" width="90%" title="courses">
     </div>
 
-3. **View course Page**
+3. **User Profile Page**
     <div>
-      <img src="src/assets/screenshots/course.png" width="90%" title="course">
+      <img src="src/assets/screenshots/user-profile.png" width="90%" title="user">
+    </div>
+
+3. **Wishlist Page**
+    <div>
+      <img src="src/assets/screenshots/wishlist.png" width="90%" title="wishlist">
     </div>
 
