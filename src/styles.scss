@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+// @import "~bootstrap/scss/bootstrap";
 
+$bg-warning: #FF6738;
+$btn-warning: #FF6738;
+// :root {
+//     --bg-warning: var($bg-warning);
+//     --btn-warning: var($btn-warning);
+// }
 * {
     padding: 0;
     margin: 0;

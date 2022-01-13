@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { Course } from '../model/courses';
 
 export interface Users {
   id?: number;
@@ -52,5 +53,10 @@ export class MainService {
   getAllCourses(): Observable<any> {
     return this._http.get("./assets/data.json");
   } 
+
+  getAllWishlistItems(): Observable<any> {
+    let wishlisted = JSON.parse(localStorage.getItem("wishListedCourses")) || [];
+    return of(wishlisted);
+  }
 
 }

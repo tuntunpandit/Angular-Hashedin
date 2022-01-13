@@ -46,8 +46,13 @@
 .cart-detail {
     .card-body {
         min-height: 250px;
+        max-height: 350px;
+        overflow: auto
     }
 }
 .cart-value {
     font-weight: 600;
+}
+.course-cart:not(:last-child) {
+    border-bottom: 1px solid #8080806b;
 }

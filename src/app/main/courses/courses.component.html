@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-12 d-flex align-items-center justify-content-between px-2">
-                        <button class="btn btn-sm btn-warning">Add to cart</button>
+                        <button class="btn btn-sm btn-warning" (click)="addToCart(course)">Add to cart</button>
                         <i class="fa fa-chevron-right text-muted px-2 clickable"></i>
                     </div>
                 </div>            
@@ -62,13 +62,17 @@
                     <p class="mb-0 cart-value">Your Card Details</p>
                 </div>
                 <div class="card-body">
-                    <div class="cart-wrapper d-flex">
-                        <div class="img-wrapper px-2">
-                            <img [src]="'assets/images/no-image.png'" class="img-fluid" alt="item">
+                    <div *ngFor="let item of courseInCart" class="d-flex flex-column course-cart mt-2">
+                        <div class="cart-wrapper d-flex">
+                            <div class="img-wrapper px-2">
+                                <img [src]="'assets/images/no-image.png'" class="img-fluid" alt="item">
+                            </div>
+                            <p class="mb-0 text-muted mx-1">{{item.title}}</p>
                         </div>
-                        <p class="mb-0 text-muted mx-1">Your cart is empty right now. Please add courses in the cart from the list</p>
+                        <div class="actual-price">
+                            <p class="mb-0 cart-value float-end">{{(item.discounted_price | currency:'INR') || "-"}}</p>
+                        </div>
                     </div>
-                    <p class="mb-0 cart-value float-end">Rs <span>0/-</span></p>
                 </div>
                 <div class="card-footer bg-white">
                     <div class="price-wrapper">
