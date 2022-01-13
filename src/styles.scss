@@ -10,3 +10,12 @@ body {
     height: 100%;
     background: #f8f9fc;
 }
+
+.clickable {
+    cursor: pointer;
+}
+.wrap-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

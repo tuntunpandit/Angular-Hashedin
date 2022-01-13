@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Users {
   id?: number;
@@ -47,5 +48,9 @@ export class MainService {
     });
     return promise;
   }
+
+  getAllCourses(): Observable<any> {
+    return this._http.get("./assets/data.json");
+  } 
 
 }

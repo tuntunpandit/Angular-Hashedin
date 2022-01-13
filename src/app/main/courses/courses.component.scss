@@ -1,0 +1,53 @@
+.img-wrapper {
+    height: 60px;
+    width: 100px;
+    .img-fluid {
+        height: 100% !important;
+    }
+}
+.pattern {
+    p {
+        font-weight: 500;
+    }
+}
+.price-bold {
+    font-weight: 500;
+}
+.actual-price {
+    text-decoration: line-through;
+}
+.course-wrapper {
+    height: 135px;
+}
+.banner {
+    padding: 30px;
+    background: #49488db3;
+
+}
+
+.select {
+    outline: none;
+    width: 100%;
+    min-width: 150px;
+    max-width: 175px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25em;
+    padding: 0.35em 0.5em;
+    font-size: 1rem;
+    opacity: 0.6;
+    cursor: pointer;
+    line-height: 1;
+    background-color: #fff;
+  }
+
+.search-wrapper {
+    max-width: 250px;
+}
+.cart-detail {
+    .card-body {
+        min-height: 250px;
+    }
+}
+.cart-value {
+    font-weight: 600;
+}
