@@ -26,3 +26,19 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.main-title {
+    position: relative;
+}
+.main-title::after {
+    position: absolute;
+    content: "";
+    border-bottom: 4px solid #ffc107;
+    width: 100%;
+    display: flex;
+    border-radius: 3px;
+    margin-top: 2px;
+}
+.form-check-input:checked {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}

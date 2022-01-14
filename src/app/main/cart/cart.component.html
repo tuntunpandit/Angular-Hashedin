@@ -1,1 +1,57 @@
-<p>cart works!</p>
+
+<div class="container">
+    <div class="row mt-5 mb-4" *ngIf="coursesInCart.length > 0; else noItem">
+        <div class="header-title d-flex">
+            <h3 class="main-title">All Cart Items</h3>
+        </div>
+        <div class="col-md-9">
+            <div class="row">              
+                <div class="card mt-3" *ngFor="let course of coursesInCart">
+                    <div class="course-wrapper d-flex justify-content-between align-items-center">
+                        <div class="col-md-2 px-2">
+                            <div class="img-wrapper px-2">
+                                <img [src]="course.image ? course.image : 'assets/images/no-image.png'" class="img-fluid" alt="item">
+                            </div>
+                        </div>
+                        <div class="col-md-4 px-2">
+                            <div class="pattern">
+                                <p class="mb-1 pt-1 title">{{course.title}}</p>
+                                <p class="text-muted mb-0">{{course.author}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-2 d-flex">
+                            <div class="align-items-center clickable d-flex wish-wrapper">
+                                <i class="fa fa-heart pe-2 wish-icon"></i>
+                                <p class="mb-0 m-auto text-muted">Move to Wishlist</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 px-2 d-flex">
+                            <p class="mb-0 discount-price m-auto">{{(course.discounted_price | currency:'INR') || "-"}}</p>
+                        </div>
+                        <div class="col-md-1 px-2 d-flex">
+                            <i class="fa fa-trash trash m-auto text-danger clickable"></i>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card cart-detail mt-3">
+                <div class="card-body">
+                    <div class="price-wrapper">
+                        <p class="mb-1 title">Total Amount</p>
+                        <p class="mb-0 cart-value">Rs <span>0/-</span></p>
+                        <p class="mb-0 saving">You have saved Rs 1080/-</p>
+                        <button class="btn btn-sm btn-warning mt-4 w-100">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noItem>
+        <div class="cart p-3 bg-white d-flex align-items-center justify-content-center mt-5">
+            <p class="mb-0">No item in cart</p>
+        </div>
+    </ng-template>
+</div>

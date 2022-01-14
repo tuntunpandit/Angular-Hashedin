@@ -5,9 +5,24 @@
     margin-left: 20px;
 }
 
+.nav-item:hover {
+    background: #d19b46;
+    border-radius: 3px;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 .nav-item a {
     color: white;
     padding: 0 11px;
     text-transform: uppercase;
     cursor: pointer;
+}
+#lblCartCount {
+    position: absolute;
+    transform: scale(0.7);
+    transform-origin: top right;
+    // left: 50%;
+    background: palevioletred;
+    margin-top: -0.25rem;
+    top: auto;
+    margin-left: -0.625rem;
 }

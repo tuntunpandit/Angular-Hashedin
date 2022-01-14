@@ -1,12 +1,12 @@
 
 <div class="container">
-    <div class="banner mt-3">
+    <!-- <div class="banner mt-3">
         <h3>Discover Latest Courses On React</h3>
-    </div>
-    <div class="row mt-4">
+    </div> -->
+    <div class="row mt-5">
         <div class="col-md-9">
             <div class="main-header d-flex justify-content-between align-items-center">
-                <h3>All Courses</h3>
+                <h3 class="main-title">All Courses</h3>
                 <select class="select" id="courseSelect" (change)="onChange($event.target.value)">
                     <option value="cp">Course Price</option>
                     <option value="l2h">Low to High</option>
@@ -24,7 +24,7 @@
                         <div class="pattern px-2">
                             <p class="mb-1 pt-1">{{course.title}}</p>
                             <div class="badge-wrapper d-flex">
-                                <p class="badge bg-warning me-1" *ngFor="let tag of course.tags">{{tag}}</p>
+                                <p class="badge bg-info me-1" *ngFor="let tag of course.tags">{{tag}}</p>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         <p class="mb-1">Total Cart Value</p>
                         <p class="mb-0 cart-value">Rs <span>0/-</span></p>
                     </div>
-                    <p class="mb-0 py-1 text-uppercase text-warning float-end">Go to Checkout</p>
+                    <p class="mb-0 py-1 text-uppercase text-warning float-end clickable text-decoration-underline">Go to Checkout</p>
                 </div>
             </div>
         </div>

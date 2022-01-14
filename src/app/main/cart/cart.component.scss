@@ -1,0 +1,46 @@
+.img-wrapper {
+    height: 60px;
+    width: 100px;
+    .img-fluid {
+        height: 100% !important;
+    }
+}
+
+.actual-price {
+    text-decoration: line-through;
+}
+.course-wrapper {
+    height: 110px;
+}
+.pattern {
+    .title {
+        // font-size: 1.3rem;
+        font-weight: 600;
+    }
+}
+.discount-price, .cart-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.trash {
+    font-size: 1.5rem;
+}
+.cart-detail {
+    .card-body {
+        min-height: 180px;
+        max-height: 350px;
+        overflow: auto
+    }
+}
+.saving {
+    font-size: 13px;
+    color: green;
+}
+.wish-wrapper:hover {
+    .wish-icon {
+        color: #ff2893;
+    }
+}
+.wish-icon {
+    color: hotpink;
+}
