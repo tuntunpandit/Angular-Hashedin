@@ -8,6 +8,7 @@ import { MainGuard } from './guards/main.guard';
 import { RouterModule, Routes } from '@angular/router';
 // components
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    SharedModule
   ],
   providers: [
     AuthGuard,

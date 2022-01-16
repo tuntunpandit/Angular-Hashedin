@@ -1,0 +1,17 @@
+<div class="modal-container">
+    <div class="card modal-wrapper">
+      <div class="card-header">
+        <i class="fa fa-close float-end text-muted clickable" (click)="closeMe()"></i>
+    </div>
+    <div class="card-body">
+        <div class="body-wrapper d-flex flex-column justify-content-center align-items-center">
+          <div class="align-items-center d-flex py-3 text-wrapper">
+            <i class="fa fa-check-circle-o pe-2 text-success" *ngIf="type == 'success'"></i>
+            <i class="fa fa-exclamation-triangle pe-2 text-danger" *ngIf="type == 'failure'"></i>
+            <p class="mb-0 text-muted">{{ body }}</p>
+          </div>
+          <button class="btn btn-sm btn-warning w-50 mt-2 text-white" (click)="closeMe()">Ok</button>
+        </div>
+    </div>
+    </div>
+  </div>

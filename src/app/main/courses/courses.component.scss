@@ -60,3 +60,17 @@
 .sm-txt {
     font-size: 13px;
 }
+.wish-wrapper:hover {
+    .wish-icon {
+        color: #ff2893;
+    }
+}
+.wish-icon {
+    color: hotpink;
+}
+
+
+.modal-container{
+    display: flex;
+    justify-content: center;
+}

@@ -50,6 +50,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('cartCourses');
+    localStorage.removeItem('wishListedCourses');
     this.currentUserSubject.next(null);
     localStorage.removeItem('user');
     this._router.navigate(['/login']);

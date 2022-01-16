@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Course } from 'src/app/model/courses';
+import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { MainService } from '../main.service';
 
 @Component({
@@ -10,15 +12,19 @@ import { MainService } from '../main.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-
+  @ViewChild('modal', { read: ViewContainerRef })
+  entry!: ViewContainerRef;
+  sub!: Subscription;
   courses: Course[] = [];
   originalCourses: Course[] = [];
   courseInCart: Course[] = [];
+
   constructor(
     private mainS: MainService, 
     private cd: ChangeDetectorRef,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private modalS: ModalService) { }
 
   ngOnInit(): void {
     this.mainS.getAllCourses().subscribe(res => {
@@ -26,13 +32,14 @@ export class CoursesComponent implements OnInit {
       this.originalCourses = res;
     });
 
-    this.courseInCart = JSON.parse(localStorage.getItem("wishListedCourses")) || [];
+    this.mainS.getAllCartItems().subscribe(data => {
+      this.courseInCart = data;
+    });
   }
 
   filterData(query: string) {
     let queryInLowerCase = query.toLowerCase();
     if (queryInLowerCase === '' || queryInLowerCase.length === 0) {
-      // console.log("originalCourses", this.originalCourses);     
       this.courseInCart = this.originalCourses;
     } else {
       this.courseInCart = this.originalCourses.filter((data) =>
@@ -43,7 +50,7 @@ export class CoursesComponent implements OnInit {
   onChange(filterBy: string) {
     switch(filterBy) {
       case "cp": 
-        this.courses = this.originalCourses;
+        // this.courses = this.originalCourses;
         break;
       case "l2h": 
         this.courses = this.courses.sort((a, b) => a.discounted_price - b.discounted_price);
@@ -53,21 +60,39 @@ export class CoursesComponent implements OnInit {
       break;
     }  
   }
+  
+  updateCart(course: Course) {
+    this.courseInCart.push(course);
+  }
 
   addToCart(course: Course) {
-    let found = [];
-    var localData = JSON.parse(localStorage.getItem("wishListedCourses")) || [];
-    if(localData.length > 0) {
-      console.log("working", localData);
-      found = localData.find(data => data.id == course.id);
-      console.log("found", found);
-    } 
-    localData.push(course);
-      localStorage.setItem("wishListedCourses", JSON.stringify(localData));
-    
+    let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
+    if(!(alreadyExist)) {
+      this.mainS.addToLocalStorage(course, "cartCourses");
+      this.mainS.openModal(this.entry, "success", "Item added in cart!");
+      this.updateCart(course);
+    } else {
+      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!");
+    }
+  }
+
+  addToWishlist(course: Course) {
+    let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
+    if(!(alreadyExist)) {
+      this.mainS.addToLocalStorage(course, "wishListedCourses");
+      this.mainS.openModal(this.entry, "success", "Item added in wishlist!");
+    } else {
+      this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!");
+    }
   }
 
   goToDetailPage(course: Course) {
     this.router.navigate([course.id], {relativeTo: this.route});
+  }
+ 
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    };
   }
 }

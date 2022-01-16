@@ -34,13 +34,13 @@
                         </div>
                         <div class="col-md-3 col-12 d-flex align-items-center px-2">
                             <div class="price d-flex">
-                                <span class="px-3"><i class="fa fa-star clickable"></i></span>
+                                <span class="px-3 wish-wrapper" title="add to wishlist" (click)="addToWishlist(course)"><i class="fa fa-heart wish-icon clickable"></i></span>
                                 <p class="mb-0 px-2 price-bold">{{(course.discounted_price | currency:'INR') || "-"}}</p>
                                 <p class="text-muted mb-0 px-1 actual-price">{{(course.actual_price | currency:'INR') || "-"}}</p>
                             </div>
                         </div>
                         <div class="col-md-2 col-12 d-flex align-items-center justify-content-between px-2">
-                            <button class="btn btn-sm btn-warning" (click)="addToCart(course)">Add to cart</button>
+                            <button class="btn btn-sm btn-warning text-white" (click)="addToCart(course)">Add to cart</button>
                             <i class="fa fa-chevron-right text-muted px-2 clickable" (click)="goToDetailPage(course)"></i>
                         </div>
                     </div>            
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-3">
             <div class="input-group search-wrapper">
-                <input type="text" class="form-control" placeholder="search.." aria-label="search"
+                <input type="text" class="form-control" placeholder="Search.." aria-label="search"
                     aria-describedby="search-box" #search (keyup)="filterData(search.value)">
                 <div class="input-group-prepend h-100">
                     <button class="input-group-text btn btn-warning" id="search-btn">
@@ -60,7 +60,7 @@
 
             <div class="card cart-detail mt-3">
                 <div class="card-header bg-white">
-                    <p class="mb-0 cart-value">Your Card Details</p>
+                    <p class="mb-0 cart-value">Your Cart Details</p>
                 </div>
                 <div class="card-body">
                     <ng-container *ngIf="courseInCart.length > 0; else noItemInCart">
@@ -97,3 +97,7 @@
         <p class="mb-0">No course for now</p>
     </div>
 </ng-template>
+
+<div class="m-container">
+    <div #modal></div>
+</div>

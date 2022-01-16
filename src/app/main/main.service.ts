@@ -3,16 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { Course } from '../model/courses';
 import { filter } from 'rxjs/operators';
+import { ModalService } from '../shared/components/modal/modal.service';
 
-export interface Users {
-  id?: number;
-  name: string;
-  role: string;
-  salary: string;
-  date: string;
-  code: string;
-  place: string
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -21,34 +13,10 @@ export class MainService {
     "username": "test",
     "password": "123456"
   })
-  apiURL = "https://tvsfit.mytvs.in/reporting/vrm/api/test_new/int/gettabledata.php";
+  constructor(private _http: HttpClient, private modalS: ModalService) { }
 
-  constructor(private _http: HttpClient) { }
-
-  getAllListData() {
-    let promise = new Promise((resolve, reject) => {
-      this._http.post<Array<Users>>(this.apiURL, this.bodyData)
-        .toPromise()
-        .then(res => {
-          let objs = res["TABLE_DATA"].data.map(function (x, index) {
-            return {
-              id: index,
-              name: x[0],
-              role: x[1],
-              place: x[2],
-              code: x[3],
-              date: x[4],
-              salary: x[5]
-            };
-          });
-          resolve(objs);
-        },
-          msg => {
-            reject(msg);
-          }
-        );
-    });
-    return promise;
+  getUserProfileData(): Observable<any> {
+    return this._http.get("./assets/user.json");
   }
 
   getAllCourses(): Observable<any> {
@@ -60,11 +28,41 @@ export class MainService {
     return of(wishlisted);
   }
 
-  getUserProfileData(): Observable<any> {
-    return this._http.get("./assets/user.json");
+  getAllCartItems(): Observable<any> {
+    let wishlisted = JSON.parse(localStorage.getItem("cartCourses")) || [];
+    return of(wishlisted);
   }
 
   getCourseById(id: string): Observable<any> {
     return this._http.get("./assets/user.json", {});
   }
+
+  addToLocalStorage(course: Course, type) {
+    let localData = JSON.parse(localStorage.getItem(type)) || [];
+    localData.push(course);
+    localStorage.setItem(type, JSON.stringify(localData));
+  }
+
+  aLreadyExist(course: Course, type) {
+    let localData = JSON.parse(localStorage.getItem(type)) || [];
+    if(localData.length > 0) {
+      const found = localData.some(data => data.id == course.id);
+      if(!found) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  openModal(entry, type, message) {
+    return this.modalS
+      .openModal(entry, type, message)
+      .subscribe((v) => {
+
+      });
+  }
+  
 }

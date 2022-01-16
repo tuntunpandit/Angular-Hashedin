@@ -12,6 +12,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { SharedModule } from '../shared/shared.module';
 const mainRoutes: Routes = [
   {
     path: '',
@@ -54,13 +56,15 @@ const mainRoutes: Routes = [
     WishlistComponent,
     UserProfileComponent,
     CoursesComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    CartDetailComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(mainRoutes)
+    RouterModule.forChild(mainRoutes),
+    SharedModule
   ],
   providers: [
     MainService
