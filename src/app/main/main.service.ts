@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { Course } from '../model/courses';
+import { filter } from 'rxjs/operators';
 
 export interface Users {
   id?: number;
@@ -61,5 +62,9 @@ export class MainService {
 
   getUserProfileData(): Observable<any> {
     return this._http.get("./assets/user.json");
+  }
+
+  getCourseById(id: string): Observable<any> {
+    return this._http.get("./assets/user.json", {});
   }
 }

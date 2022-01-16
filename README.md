@@ -13,7 +13,6 @@ The user should be able to add items from the dashboard screen to cart(milestone
 #### Milestone 3 
 
 Completion of Wish List screen is a must along with proper test cases, and proper handling of the error states. 
-
 Move to wishlist feature should be enabled on the dashboard, checkout screen and course details screen. 
 
 #### Milestone 4 
@@ -23,10 +22,7 @@ Completion of Course details screen is a must along with proper test cases, and 
 #### Milestone 5 
 
 Completion of Profile screen is a must along with proper test cases, and proper handling of the error states. 
-
-Proper validations should be added for different fields. The user should be 
-
-allowed to save changes even if changes are made to a single form field. 
+Proper validations should be added for different fields. The user should be allowed to save changes even if changes are made to a single form field. 
 
 
 # Follow these steps to run this project in localhost
@@ -48,6 +44,10 @@ Open your terminal and type these:
       <img src="src/assets/screenshots/dashboard-1.png" width="90%" title="courses">
     </div>
 
+3. **Course Detail Page**
+    <div>
+      <img src="src/assets/screenshots/course-detail.png" width="90%" title="course-detail">
+    </div>
 3. **User Profile Page**
     <div>
       <img src="src/assets/screenshots/user-profile.png" width="90%" title="user">

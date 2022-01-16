@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/model/courses';
 import { MainService } from '../main.service';
 
@@ -12,7 +14,11 @@ export class CoursesComponent implements OnInit {
   courses: Course[] = [];
   originalCourses: Course[] = [];
   courseInCart: Course[] = [];
-  constructor(private mainS: MainService, private cd: ChangeDetectorRef) { }
+  constructor(
+    private mainS: MainService, 
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.mainS.getAllCourses().subscribe(res => {
@@ -61,4 +67,7 @@ export class CoursesComponent implements OnInit {
     
   }
 
+  goToDetailPage(course: Course) {
+    this.router.navigate([course.id], {relativeTo: this.route});
+  }
 }

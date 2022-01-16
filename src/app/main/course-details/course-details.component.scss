@@ -1,0 +1,55 @@
+.course-wrapper {
+    height: 200px;
+}
+.detail-wrapper {
+    position: absolute;
+    width: 100%;
+    background-color: #000000d6;
+    color: white;
+    left: 0;
+    padding: 2rem 3rem;
+}
+.detail {
+    max-width: 50%;
+}
+.detail_header {
+    color: white;
+    opacity: 0.8;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.detail_secondary_header {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.detail_name {
+    font-size: 12px;
+    color: #FF9271;
+}
+.course-detail {
+    width: 80%;
+}
+.discounted_price {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.actual_price {
+    text-decoration: line-through;
+    font-size: 13px;
+}
+.timing {
+    color: palevioletred;
+    i,p {
+        font-weight: 500;
+    }
+}
+.video-wrapper {
+    z-index: 2;
+    margin-top: -8rem;
+    height: 200px;
+    // background: gray;
+    video {
+        border-radius: 0 0 3px 3px;
+    }
+}

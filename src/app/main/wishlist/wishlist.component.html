@@ -12,42 +12,44 @@
                     <option value="h2l">High to Low</option>
                 </select>
             </div>
-            <div class="card row mt-3" *ngFor="let course of whistlistCourses">
-                <div class="course-wrapper d-flex justify-content-between align-items-center">
-                    <div class="col-md-1 col-12 d-flex align-items-center px-2">
-                        <div class="img-wrapper px-2">
-                            <img [src]="course.image ? course.image : 'assets/images/no-image.png'" class="img-fluid" alt="item">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-12 d-flex align-items-center px-2">
-                        <div class="pattern px-2">
-                            <p class="mb-1 pt-1">{{course.title}}</p>
-                            <div class="badge-wrapper d-flex">
-                                <p class="badge bg-info me-1" *ngFor="let tag of course.tags">{{tag}}</p>
+            <ng-container *ngIf="whistlistCourses.length > 0; else noItemInWishlist">
+                <div class="card row mt-3" *ngFor="let course of whistlistCourses">
+                    <div class="course-wrapper d-flex justify-content-between align-items-center">
+                        <div class="col-md-1 col-12 d-flex align-items-center px-2">
+                            <div class="img-wrapper px-2">
+                                <img [src]="course.image ? course.image : 'assets/images/no-image.png'" class="img-fluid" alt="item">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-2 d-flex align-items-center px-2">
-                        <p class="text-muted mb-0">{{course.title}}</p>
-                    </div>
-                    <div class="col-md-3 col-12 d-flex align-items-center px-2">
-                        <div class="price d-flex">
-                            <span class="px-3"><i class="fa fa-star clickable"></i></span>
-                            <p class="mb-0 px-2 price-bold">{{(course.discounted_price | currency:'INR') || "-"}}</p>
-                            <p class="text-muted mb-0 px-1 actual-price">{{(course.actual_price | currency:'INR') || "-"}}</p>
+                        <div class="col-md-3 col-12 d-flex align-items-center px-2">
+                            <div class="pattern px-2">
+                                <p class="mb-1 pt-1">{{course.title}}</p>
+                                <div class="badge-wrapper d-flex">
+                                    <p class="badge bg-info me-1" *ngFor="let tag of course.tags">{{tag}}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-12 d-flex align-items-center justify-content-between px-2">
-                        <div class="btn-wrapper d-flex">
-                            <button class="btn btn-sm btn-warning" (click)="addToCart(course)">Add to cart</button>
-                            <button class="btn btn-sm btn-danger mx-1" (click)="removeFromWishlist(course)">
-                                <i class="fa fa-trash"></i>
-                            </button>
+                        <div class="col-md-2 d-flex align-items-center px-2">
+                            <p class="text-muted mb-0">{{course.title}}</p>
                         </div>
-                        <i class="fa fa-chevron-right text-muted px-2 clickable"></i>
-                    </div>
-                </div>            
-            </div>
+                        <div class="col-md-3 col-12 d-flex align-items-center px-2">
+                            <div class="price d-flex">
+                                <span class="px-3"><i class="fa fa-star clickable"></i></span>
+                                <p class="mb-0 px-2 price-bold">{{(course.discounted_price | currency:'INR') || "-"}}</p>
+                                <p class="text-muted mb-0 px-1 actual-price">{{(course.actual_price | currency:'INR') || "-"}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 d-flex align-items-center justify-content-between px-2">
+                            <div class="btn-wrapper d-flex">
+                                <button class="btn btn-sm btn-warning" (click)="addToCart(course)">Add to cart</button>
+                                <button class="btn btn-sm btn-danger mx-1" (click)="removeFromWishlist(course)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                            <i class="fa fa-chevron-right text-muted px-2 clickable"></i>
+                        </div>
+                    </div>            
+                </div>
+            </ng-container>
         </div>
         <div class="col-md-3">
             <div class="input-group search-wrapper">
@@ -65,17 +67,19 @@
                     <p class="mb-0 cart-value">Your Card Details</p>
                 </div>
                 <div class="card-body">
-                    <div *ngFor="let item of courseInCart" class="d-flex flex-column course-cart mt-2">
-                        <div class="cart-wrapper d-flex">
-                            <div class="img-wrapper px-2">
-                                <img [src]="'assets/images/no-image.png'" class="img-fluid" alt="item">
+                    <ng-container *ngIf="courseInCart.length > 0; else noItemInCart">
+                        <div *ngFor="let item of courseInCart" class="d-flex flex-column course-cart mt-2">
+                            <div class="cart-wrapper d-flex">
+                                <div class="img-wrapper px-2">
+                                    <img [src]="'assets/images/no-image.png'" class="img-fluid" alt="item">
+                                </div>
+                                <p class="mb-0 text-muted mx-1">{{item.title}}</p>
                             </div>
-                            <p class="mb-0 text-muted mx-1">{{item.title}}</p>
+                            <div class="actual-price">
+                                <p class="mb-0 cart-value float-end">{{(item.discounted_price | currency:'INR') || "-"}}</p>
+                            </div>
                         </div>
-                        <div class="actual-price">
-                            <p class="mb-0 cart-value float-end">{{(item.discounted_price | currency:'INR') || "-"}}</p>
-                        </div>
-                    </div>
+                    </ng-container>
                 </div>
                 <div class="card-footer bg-white">
                     <div class="price-wrapper">
@@ -88,3 +92,12 @@
         </div>
     </div>
 </div>
+
+<ng-template #noItemInCart>
+    <p class="text-muted sm-txt">Your cart is empty right now. Please add courses in the cart from the list.</p>
+</ng-template>
+<ng-template #noItemInWishlist>
+    <div class="cart p-3 bg-white d-flex align-items-center justify-content-center mt-5">
+        <p class="mb-0">No item in wishlist</p>
+    </div>
+</ng-template>

@@ -27,6 +27,10 @@ const mainRoutes: Routes = [
         component: CoursesComponent
       },
       {
+        path: 'courses/:id',
+        component: CourseDetailsComponent
+      },
+      {
         path: 'cart',
         component: CartComponent,
       },
