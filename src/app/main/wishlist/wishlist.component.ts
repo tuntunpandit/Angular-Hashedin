@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Course } from 'src/app/model/courses';
 import { MainService } from '../main.service';
 
@@ -12,16 +13,37 @@ export class WishlistComponent implements OnInit {
   whistlistCourses: Course[] = [];
   originalCourses: Course[] = [];
   courseInCart: Course[] = [];
+  totalCartAmount: any;
+  @ViewChild('modal', { read: ViewContainerRef })
+  entry!: ViewContainerRef;
+  sub!: Subscription;
   constructor(private mainS: MainService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.fetchAllWishlistItems();
+    this.fetchAllCartItems();
+  }
+
+  fetchAllWishlistItems() {
     this.mainS.getAllWishlistItems().subscribe(res => {
-      console.log("res", res);
       this.whistlistCourses = res;
       this.originalCourses = res;
     });
+  }
 
-    this.courseInCart = JSON.parse(localStorage.getItem("wishListedCourses")) || [];
+  fetchAllCartItems() {
+    this.mainS.getAllCartItems().subscribe(data => {
+      this.courseInCart = data;
+      this.totalCartAmount = this.calculateTotal(this.courseInCart);
+    });
+  }
+
+  calculateTotal(courses: Course[]) {
+    let total = courses.reduce((acc, next) => {
+      return Number(acc) + Number(next.discounted_price);
+    }, 0);
+
+    return total.toFixed(2);
   }
 
   filterData(query: string) {
@@ -50,21 +72,35 @@ export class WishlistComponent implements OnInit {
     }  
   }
 
+  updateCart(course: Course) {
+    this.courseInCart.push(course);
+    this.totalCartAmount = this.calculateTotal(this.courseInCart);
+  }
+
   addToCart(course: Course) {
-    let found = [];
-    var localData = JSON.parse(localStorage.getItem("wishListedCourses")) || [];
-    if(localData.length > 0) {
-      console.log("working", localData);
-      found = localData.find(data => data.id == course.id);
-      console.log("found", found);
-    } 
-    localData.push(course);
-      localStorage.setItem("wishListedCourses", JSON.stringify(localData));
-    
+    let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
+    if(!(alreadyExist)) {
+      this.mainS.addToLocalStorage(course, "cartCourses");
+      this.mainS.openModal(this.entry, "success", "Item added in cart!");
+      this.updateCart(course);
+    } else {
+      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!");
+    }
   }
 
   removeFromWishlist(course: Course) {
-    
+    let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
+    // console.log("alreadyExist", alreadyExist);
+    if(alreadyExist) {
+      this.mainS.deleteFromLocalStorage(course, "wishListedCourses");
+      this.fetchAllWishlistItems();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    };
   }
 
 }

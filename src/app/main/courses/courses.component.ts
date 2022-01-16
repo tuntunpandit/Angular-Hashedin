@@ -18,7 +18,7 @@ export class CoursesComponent implements OnInit {
   courses: Course[] = [];
   originalCourses: Course[] = [];
   courseInCart: Course[] = [];
-
+  totalCartAmount: any;
   constructor(
     private mainS: MainService, 
     private cd: ChangeDetectorRef,
@@ -34,7 +34,16 @@ export class CoursesComponent implements OnInit {
 
     this.mainS.getAllCartItems().subscribe(data => {
       this.courseInCart = data;
+      this.totalCartAmount = this.calculateTotal(this.courseInCart);
     });
+  }
+
+  calculateTotal(courses: Course[]) {
+    let total = courses.reduce((acc, next) => {
+      return Number(acc) + Number(next.discounted_price);
+    }, 0);
+
+    return total.toFixed(2);
   }
 
   filterData(query: string) {
@@ -63,6 +72,7 @@ export class CoursesComponent implements OnInit {
   
   updateCart(course: Course) {
     this.courseInCart.push(course);
+    this.totalCartAmount = this.calculateTotal(this.courseInCart);
   }
 
   addToCart(course: Course) {

@@ -53,7 +53,7 @@
                     aria-describedby="search-box" #search (keyup)="filterData(search.value)">
                 <div class="input-group-prepend h-100">
                     <button class="input-group-text btn btn-warning" id="search-btn">
-                        <i class="fa fa-search"></i>
+                        <i class="fa fa-search text-white"></i>
                     </button>
                 </div>
             </div>
@@ -80,9 +80,11 @@
                 <div class="card-footer bg-white">
                     <div class="price-wrapper">
                         <p class="mb-1">Total Cart Value</p>
-                        <p class="mb-0 cart-value">Rs <span>0/-</span></p>
+                        <p class="mb-0 cart-value"><span>{{totalCartAmount | currency: 'INR'}}</span> /-</p>
                     </div>
-                    <p class="mb-0 py-1 text-uppercase text-warning float-end clickable text-decoration-underline">Go to Checkout</p>
+                    <a class="nav-link" [routerLink]="['/cart']" routerLinkActive="active">
+                        <p class="mb-0 py-1 text-uppercase text-warning float-end clickable text-decoration-underline">Go to Checkout</p>
+                    </a>
                 </div>
             </div>
         </div>

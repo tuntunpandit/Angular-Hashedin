@@ -43,6 +43,15 @@ export class MainService {
     localStorage.setItem(type, JSON.stringify(localData));
   }
 
+  deleteFromLocalStorage(course: Course, type) {
+    let localData = JSON.parse(localStorage.getItem(type)) || [];
+    let index = localData.findIndex(x => x.id === course.id);
+    if (index !== -1) {
+      localData.splice(index, 1);
+      localStorage.setItem(type, JSON.stringify(localData));
+    }
+  }
+
   aLreadyExist(course: Course, type) {
     let localData = JSON.parse(localStorage.getItem(type)) || [];
     if(localData.length > 0) {

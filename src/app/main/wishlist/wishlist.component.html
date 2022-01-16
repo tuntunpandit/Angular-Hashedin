@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-3 col-12 d-flex align-items-center justify-content-between px-2">
                             <div class="btn-wrapper d-flex">
-                                <button class="btn btn-sm btn-warning" (click)="addToCart(course)">Add to cart</button>
+                                <button class="btn btn-sm btn-warning text-white" (click)="addToCart(course)">Add to cart</button>
                                 <button class="btn btn-sm btn-danger mx-1" (click)="removeFromWishlist(course)">
                                     <i class="fa fa-trash"></i>
                                 </button>
@@ -57,14 +57,14 @@
                     aria-describedby="search-box" #search (keyup)="filterData(search.value)">
                 <div class="input-group-prepend h-100">
                     <button class="input-group-text btn btn-warning" id="search-btn">
-                        <i class="fa fa-search"></i>
+                        <i class="fa fa-search text-white"></i>
                     </button>
                 </div>
             </div>
 
             <div class="card cart-detail mt-4">
                 <div class="card-header bg-white">
-                    <p class="mb-0 cart-value">Your Card Details</p>
+                    <p class="mb-0 cart-value">Your Cart Details</p>
                 </div>
                 <div class="card-body">
                     <ng-container *ngIf="courseInCart.length > 0; else noItemInCart">
@@ -84,9 +84,11 @@
                 <div class="card-footer bg-white">
                     <div class="price-wrapper">
                         <p class="mb-1">Total Cart Value</p>
-                        <p class="mb-0 cart-value">Rs <span>0/-</span></p>
+                        <p class="mb-0 cart-value"><span>{{totalCartAmount | currency: 'INR'}}</span> /-</p>
                     </div>
-                    <p class="mb-0 py-1 text-uppercase text-warning float-end clickable text-decoration-underline">Go to Checkout</p>
+                    <a class="nav-link" [routerLink]="['/cart']" routerLinkActive="active">
+                        <p class="mb-0 py-1 text-uppercase text-warning float-end clickable text-decoration-underline">Go to Checkout</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -101,3 +103,7 @@
         <p class="mb-0">No item in wishlist</p>
     </div>
 </ng-template>
+
+<div class="m-container">
+    <div #modal></div>
+</div>
