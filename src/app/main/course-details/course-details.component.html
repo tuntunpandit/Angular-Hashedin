@@ -3,28 +3,21 @@
         <div class="detail-wrapper">
             <div class="detail">
                 <p class="detail_header">Responsive Design Course XYZ How to design responsive templates</p>
-                <p class="detail_secondary_header text-muted">Responsive Design Course XYZ How to design responsive templates</p>
-                <p class="detail_name">Joseph Marie</p>
+                <p class="detail_secondary_header text-muted">{{courseData.title}}</p>
+                <p class="detail_name">{{courseData.author}}</p>
                 <div class="badge-wrapper d-flex">
-                    <span class="badge bg-info me-1">React</span>
-                    <span class="badge bg-info me-1">React</span>
-                    <span class="badge bg-info me-1">React</span>
+                    <span class="badge bg-info me-1" *ngFor="let tag of courseData.tags">{{tag}}</span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-3">
         <div class="col-md-7">
             <div class="card p-3">
                 <div class="course-header d-flex">
                     <h6 class="main-title">Course Details</h6>
                 </div>
-                <p class="course-detail my-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sequi? Quo eaque suscipit odio tenetur. 
-                    Sint sapiente accusantium eaque veniam mollitia deleniti quibusdam culpa itaque, suscipit numquam tempora officia? 
-                    Blanditiis.</p>
-                <p class="course-detail my-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, sequi? Quo eaque suscipit odio tenetur. 
-                    Sint sapiente accusantium eaque veniam mollitia deleniti quibusdam culpa itaque, suscipit numquam tempora officia? 
-                    Blanditiis.</p>
+                <p class="course-detail my-2">{{courseData.details}}</p>
             </div>
         </div>
         <div class="col-md-5">
@@ -38,15 +31,15 @@
                 <div class="card cart-detail mt-3">
                     <div class="card-body">
                         <div class="price-wrapper">
-                            <p class="mb-0 discounted_price">Rs <span>520/-</span></p>
-                            <p class="mb-2 actual_price">Rs <span>820/-</span></p>
+                            <p class="mb-0 discounted_price"><span>{{(courseData.discounted_price | currency: 'INR') || 0}}</span> /-</p>
+                            <p class="mb-2 actual_price"><span>{{courseData.actual_price | currency: 'INR'}}</span> /-</p>
                             <div class="timing d-flex align-items-center">
                                 <i class="fa fa-clock-o me-1"></i>
                                 <p class="mb-0"><span>8 hrs </span>left for the price</p>
                             </div>
                             <div class="btn-arapper d-flex gap-2">
-                                <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase" (click)="addToCart(course)">Add to Cart</button>
-                                <button class="btn btn-sm btn-outline-warning mt-4 w-100 text-uppercase" (click)="addToWishlist(course)">Add to Wishlist</button>
+                                <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase" (click)="addToCart(courseData)">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-warning mt-4 w-100 text-uppercase" (click)="addToWishlist(courseData)">Add to Wishlist</button>
                             </div>
                         </div>
                     </div>

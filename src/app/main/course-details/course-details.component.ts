@@ -13,7 +13,7 @@ export class CourseDetailsComponent implements OnInit {
   @ViewChild('modal', { read: ViewContainerRef })
   entry!: ViewContainerRef;
   sub!: Subscription;
-  course: Course;
+  courseData: any;
   courseId: string;
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +23,10 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
    this.courseId = this.route.snapshot.paramMap.get('id');
    this.mainS.getCourseById(this.courseId).subscribe(data => {
-     console.log("d", data);
-     this.course = data;
+     console.log("datadatadata", data);
+     
+     this.courseData = data[0];
+     console.log("cd", this.courseData);
    })
   }
 
@@ -33,7 +35,6 @@ export class CourseDetailsComponent implements OnInit {
     if(!(alreadyExist)) {
       this.mainS.openModal(this.entry, "success", "Item will be added in cart!").subscribe(v => {
         this.mainS.addToLocalStorage(course, "cartCourses");
-        // this.updateCart(course);
       });
     } else {
       this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!").subscribe(v => { });

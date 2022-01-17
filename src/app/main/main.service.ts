@@ -41,7 +41,6 @@ export class MainService {
       }),
       // catchError(this.handleError)
     );
-    console.log("F", found);
     return found;
   }
 
