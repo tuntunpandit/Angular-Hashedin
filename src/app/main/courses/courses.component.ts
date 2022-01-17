@@ -49,10 +49,11 @@ export class CoursesComponent implements OnInit {
   filterData(query: string) {
     let queryInLowerCase = query.toLowerCase();
     if (queryInLowerCase === '' || queryInLowerCase.length === 0) {
-      this.courseInCart = this.originalCourses;
+      this.courses = this.originalCourses;
     } else {
-      this.courseInCart = this.originalCourses.filter((data) =>
-        data.title.toLowerCase().includes(queryInLowerCase));
+      this.courses = this.originalCourses.filter((data) =>
+        data.title.toLowerCase().includes(queryInLowerCase) || 
+        data.author.toLowerCase().includes(queryInLowerCase));
     }
   }
 

@@ -55,10 +55,11 @@ export class WishlistComponent implements OnInit {
     let queryInLowerCase = query.toLowerCase();
     if (queryInLowerCase === '' || queryInLowerCase.length === 0) {
       // console.log("originalCourses", this.originalCourses);     
-      this.courseInCart = this.originalCourses;
+      this.whistlistCourses = this.originalCourses;
     } else {
-      this.courseInCart = this.originalCourses.filter((data) =>
-        data.title.toLowerCase().includes(queryInLowerCase));
+      this.whistlistCourses = this.originalCourses.filter((data) =>
+        data.title.toLowerCase().includes(queryInLowerCase) ||
+        data.author.toLowerCase().includes(queryInLowerCase));
     }
   }
 
