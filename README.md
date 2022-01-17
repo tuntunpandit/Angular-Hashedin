@@ -39,22 +39,28 @@ Open your terminal and type these:
       <img src="src/assets/screenshots/login.png" width="90%" title="login">
     </div>
 
-2. **All Courses Page**
+2. **User Profile Page**
     <div>
-      <img src="src/assets/screenshots/dashboard-1.png" width="90%" title="courses">
+      <img src="src/assets/screenshots/profile.png" width="90%" title="profile">
     </div>
 
-3. **Course Detail Page**
+3. **All Courses Page**
+    <div>
+      <img src="src/assets/screenshots/courses.png" width="90%" title="courses">
+    </div>
+
+4. **Course Detail Page**
     <div>
       <img src="src/assets/screenshots/course-detail.png" width="90%" title="course-detail">
     </div>
-3. **User Profile Page**
-    <div>
-      <img src="src/assets/screenshots/user-profile.png" width="90%" title="user">
-    </div>
 
-3. **Wishlist Page**
+5. **Wishlist Page**
     <div>
       <img src="src/assets/screenshots/wishlist.png" width="90%" title="wishlist">
+    </div>
+
+6. **Cart Page**
+    <div>
+      <img src="src/assets/screenshots/cart.png" width="90%" title="user">
     </div>
 
