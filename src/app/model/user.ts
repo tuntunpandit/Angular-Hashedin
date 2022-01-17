@@ -4,7 +4,7 @@ export interface User {
     lastName: string;
     about: string;
     interest: string;
-    sOrP: string;
+    profession: string;
     experience: string;
     expertise: string;
     role: string

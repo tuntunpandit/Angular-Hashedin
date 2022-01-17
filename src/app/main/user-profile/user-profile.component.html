@@ -12,57 +12,54 @@
                       <div class="form-group mt-3 col-md-4">
                         <label class="mb-1" for="userName">User Name</label>
                         <input type="text" class="form-control" id="userName" placeholder="username" formControlName="username">
+                        <span class="text-danger" *ngIf="(userFormControl.username.touched || submitted) && userFormControl.username.errors?.required">
+                            username is required
+                        </span>
                       </div>
                       <div class="form-group mt-3 col-md-4">
                         <label class="mb-1" for="firstName">First Name</label>
                         <input type="text" class="form-control" id="firstName" placeholder="first name" formControlName="firstName">
+                        <span class="text-danger" *ngIf="(userFormControl.firstName.touched || submitted) && userFormControl.firstName.errors?.required">
+                          first name is required
+                      </span>
                       </div>
                       <div class="form-group mt-3 col-md-4">
                         <label class="mb-1" for="lastName">Last Name</label>
                         <input type="text" class="form-control" id="lastName" placeholder="last name" formControlName="lastName">
+                        <span class="text-danger" *ngIf="(userFormControl.lastName.touched || submitted) && userFormControl.lastName.errors?.required">
+                          last name is required
+                      </span>
                       </div>
                     </div>
                     <div class="form-group mt-3">
                       <label class="mb-1" for="aboutYou">About Yourself</label>
                       <textarea type="text" rows="4" class="form-control" id="aboutYou" formControlName="about"></textarea>
+                      <span class="text-danger" *ngIf="(userFormControl.about.touched || submitted) && userFormControl.about.errors?.required">
+                        about yourself is required
+                    </span>
                     </div>
                     <div class="form-group mt-3">
                         <label class="mb-2">Your Area of Interest</label>
-                        <div class="form-check mt-1">
-                            <input class="form-check-input" type="checkbox" value="designer" id="designer1" formControlName="interest">
-                            <label class="form-check-label" for="designer1">
-                              Designer
-                            </label>
-                          </div>
-                          <div class="form-check mt-1">
-                            <input class="form-check-input" type="checkbox" value="developer" id="developer1" formControlName="interest">
-                            <label class="form-check-label" for="developer1">
-                              Developer
-                            </label>
-                          </div>
-                          <div class="form-check mt-1">
-                            <input class="form-check-input" type="checkbox" value="manager" id="projectManager1" formControlName="interest">
-                            <label class="form-check-label" for="projectManager1">
-                              Project Manager
-                            </label>
-                          </div>
-                          <div class="form-check mt-1">
-                            <input class="form-check-input" type="checkbox" value="sales" id="sales1"  formControlName="interest">
-                            <label class="form-check-label" for="sales1">
-                              Sales
-                            </label>
-                          </div>
+                        <div class="form-check mt-1" *ngFor="let area of interests">
+                          <input class="form-check-input" type="checkbox" id="{{area.value}}" [value]="area.value" [checked]="area.value"  formControlName="interest" (change)="onCheckboxChange($event)">
+                          <label class="form-check-label" for="{{area.value}}}">
+                            {{area.name}}
+                          </label>
+                        </div>
+                        <!-- <span class="text-danger" *ngIf="this.userForm.controls['checkArray'].errors?.required">
+                          Checkbox is required, select atleast one value.
+                        </span> -->
                     </div>
                     <div class="form-group mt-3">
                         <label class="mb-2">Are you a Student or Professional?</label>
                         <div class="form-check mt-1">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" formControlName="profession" value="student" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                               Student
                             </label>
                           </div>
                           <div class="form-check mt-1">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <input class="form-check-input" type="radio" formControlName="profession" value="professional" id="flexRadioDefault2" checked>
                             <label class="form-check-label" for="flexRadioDefault2">
                               Professional
                             </label>
@@ -72,19 +69,19 @@
                         <label class="mb-2">How much of experience you have?</label>
                         <div class="row mx-0">
                             <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="zeroToFive" id="zeroToFive1">
+                                <input class="form-check-input" type="radio" formControlName="experience" value="fresher" id="zeroToFive1">
                                 <label class="form-check-label" for="zeroToFive1">
                                   0-5
                                 </label>
                               </div>
                               <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="fiveToTen" id="fiveToTen2" checked>
+                                <input class="form-check-input" type="radio" formControlName="experience" value="intermediate" id="fiveToTen2" checked>
                                 <label class="form-check-label" for="fiveToTen2">
                                   5-10
                                 </label>
                               </div>
                               <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="tenAndAbove" id="tenAndAbove2">
+                                <input class="form-check-input" type="radio" formControlName="experience" value="expert" id="tenAndAbove2">
                                 <label class="form-check-label" for="tenAndAbove2">
                                   10 & above
                                 </label>
@@ -95,19 +92,19 @@
                         <label class="mb-2">What is your expertise</label>
                         <div class="row mx-0">
                             <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="java" id="java1">
+                                <input class="form-check-input" type="radio" formControlName="expertise" value="java" id="java1">
                                 <label class="form-check-label" for="java1">
                                   Java
                                 </label>
                               </div>
                               <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="angular" id="angular2">
+                                <input class="form-check-input" type="radio" formControlName="expertise" value="angular" id="angular2">
                                 <label class="form-check-label" for="angular2">
                                   Angular
                                 </label>
                               </div>
                               <div class="form-check mt-1 col-md-4">
-                                <input class="form-check-input" type="radio" name="python" id="python2" checked>
+                                <input class="form-check-input" type="radio" formControlName="expertise" value="python" id="python2" checked>
                                 <label class="form-check-label" for="python2">
                                   Python
                                 </label>
@@ -117,10 +114,17 @@
                     <div class="form-group mt-3 col-md-6">
                         <label class="mb-1" for="role">Your Role</label>
                         <input type="text" class="form-control" id="role" placeholder="mention your role" formControlName="role">
+                        <span class="text-danger" *ngIf="(userFormControl.role.touched || submitted) && userFormControl.role.errors?.required">
+                          role is required
+                      </span>
                       </div>
-                    <button type="submit" class="btn btn-warning mt-4 w-25">Save</button>
+                    <button type="submit" class="btn btn-warning mt-4 w-25 text-white" [disabled]="userForm.invalid">Save</button>
                   </form>
             </div>
         </div>
     </div>
+</div>
+
+<div class="m-container">
+  <div #modal></div>
 </div>

@@ -4,6 +4,7 @@ import { from, Observable, of } from 'rxjs';
 import { Course } from '../model/courses';
 import { ModalService } from '../shared/components/modal/modal.service';
 import { catchError, filter, map } from 'rxjs/operators';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,12 @@ export class MainService {
   constructor(private _http: HttpClient, private modalS: ModalService) { }
 
   getUserProfileData(): Observable<any> {
-    return this._http.get("./assets/user.json");
+    let localData = JSON.parse(localStorage.getItem("userData")) || {};
+    if(localData) {
+      return of(localData);
+    } else {
+      return this._http.get("./assets/user.json");
+    }
   }
 
   getAllCourses(): Observable<any> {
@@ -81,4 +87,8 @@ export class MainService {
     localStorage.removeItem(type);
   }
   
+  saveUserData(userData: User): Observable<any> {
+    localStorage.setItem("userData", JSON.stringify(userData));
+    return of(userData);
+  }
 }

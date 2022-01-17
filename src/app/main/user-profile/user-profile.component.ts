@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormGroup, NgForm, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { MainService } from '../main.service';
 
@@ -11,6 +12,17 @@ import { MainService } from '../main.service';
 export class UserProfileComponent implements OnInit {
   user: User;
   userForm: FormGroup;
+  submitted: boolean = false;
+  interests: Array<{name: string, value: string}> = [
+    { name: 'Designer', value: 'designer' },
+    { name: 'Developer', value: 'developer' },
+    { name: 'Project Manager', value: 'manager' },
+    { name: 'Sales', value: 'ales' }
+  ];
+  @ViewChild('modal', { read: ViewContainerRef })
+  entry!: ViewContainerRef;
+  sub!: Subscription;
+
   constructor(
     private mainS: MainService,
     private formBuilder: FormBuilder) { }
@@ -22,6 +34,9 @@ export class UserProfileComponent implements OnInit {
       lastName: ['', Validators.required],
       about: ['', Validators.required],
       interest: ['', Validators.required],
+      profession: ['', Validators.required],
+      experience: ['', Validators.required],
+      expertise: ['', Validators.required],
       role: ['', Validators.required]
     });
     this.mainS.getUserProfileData().subscribe(data => {
@@ -32,14 +47,31 @@ export class UserProfileComponent implements OnInit {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
         about: this.user.about,
-        interest: this.user.about,
+        interest: this.user.interest,
+        profession: this.user.profession,
+        experience: this.user.experience,
+        expertise: this.user.expertise,
         role: this.user.role
       });
     })
   }
 
-  onSubmit() {
+  get userFormControl() {
+     return this.userForm.controls;
+  }
 
+  onSubmit() {
+    this.submitted = true;
+    if(this.userForm.invalid) {
+        return;
+    }
+    this.mainS.openModal(this.entry, "success", "User Data will be updated!").subscribe(v => { 
+      this.mainS.saveUserData(this.userForm.value);
+    });
+  }
+
+  onCheckboxChange(e) {
+    
   }
 
 }
