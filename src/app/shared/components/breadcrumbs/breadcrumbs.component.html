@@ -1,0 +1,19 @@
+<div class="p-3 bg-white">
+  <nav aria-label="breadcrumb" class="breadcrumb mb-0 d-inline-flex small flex-nowrap flex-md-wrap ">
+    <div class="breadcrumb-item" *ngFor="let bread of breadcrumbs; last as isLast; index as B_i"
+      [attr.aria-current]="!isLast ? null : 'page'">
+      <a class="d-inline-block bread-link" [attr.href]="serilizeUrl(bread)"
+        (click)="openPageWithBreadcrumb($event,B_i)" *ngIf="!isLast">
+        <ng-container [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ '$implicit': bread.label}">
+        </ng-container>
+      </a>
+      <ng-container *ngIf="isLast" [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ '$implicit': bread.label}">
+      </ng-container>
+    </div>
+  </nav>
+</div>
+
+<ng-template let-label #label>
+  <i class="fa fa-home" *ngIf="label?.toLowerCase() === 'courses'"></i>
+  <ng-container *ngIf="label?.toLowerCase() !== 'courses'">{{label}}</ng-container>
+</ng-template>

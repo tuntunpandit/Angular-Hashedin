@@ -14,35 +14,54 @@ import { CoursesComponent } from './courses/courses.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { SharedModule } from '../shared/shared.module';
+
 const mainRoutes: Routes = [
   {
     path: '',
     component: MainComponent,
+    data: {
+      breadcrumb: 'Home',
+    },
     children: [
       {
         path: '',
         redirectTo: 'courses',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'courses',
-        component: CoursesComponent
+        component: CoursesComponent,
+        // data: {
+        //   breadcrumb: 'Courses',
+        // }
       },
       {
         path: 'courses/:id',
-        component: CourseDetailsComponent
+        component: CourseDetailsComponent,
+        data: {
+          breadcrumb: 'Course Detail',
+        }
       },
       {
         path: 'cart',
         component: CartComponent,
+        data: {
+          breadcrumb: 'Cart',
+        }
       },
       {
         path: 'wishlist',
         component: WishlistComponent,
+        data: {
+          breadcrumb: 'Wishlist',
+        }
       },
       {
         path: 'profile',
         component: UserProfileComponent,
+        data: {
+          breadcrumb: 'Profile',
+        }
       }
     ]
   }

@@ -1,0 +1,12 @@
+nav[aria-label="breadcrumb"] {
+    position: relative;
+    z-index: 1000;
+  }
+:host {
+display: block;
+}
+.breadcrumb {
+background-color: transparent;
+}
+
+  
