@@ -61,14 +61,15 @@ export class CartComponent implements OnInit {
   removeFromCart(course: Course) {
     let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
     if(alreadyExist) {
-      this.mainS.deleteFromLocalStorage(course, "cartCourses");
-      this.fetchAllCartItems();
+      this.mainS.openModal(this.entry, "failure", "Item will be deleted from cart!").subscribe(v => {
+        this.mainS.deleteFromLocalStorage(course, "cartCourses");
+        this.fetchAllCartItems();
+      })
     }
   }
 
   checkout() {
     this.mainS.openModal(this.entry, "success", "Items placed successfully!").subscribe(v => {
-      // console.log("v", v);
       this.mainS.deleteAllCartItemsFromLocal("cartCourses");
       this.fetchAllCartItems();
     })

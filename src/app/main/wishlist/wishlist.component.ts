@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Course } from 'src/app/model/courses';
 import { MainService } from '../main.service';
@@ -17,7 +18,11 @@ export class WishlistComponent implements OnInit {
   @ViewChild('modal', { read: ViewContainerRef })
   entry!: ViewContainerRef;
   sub!: Subscription;
-  constructor(private mainS: MainService, private cd: ChangeDetectorRef) { }
+  constructor(
+    private mainS: MainService, 
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.fetchAllWishlistItems();
@@ -80,9 +85,11 @@ export class WishlistComponent implements OnInit {
   addToCart(course: Course) {
     let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
     if(!(alreadyExist)) {
-      this.mainS.addToLocalStorage(course, "cartCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in cart!").subscribe(v => {});
-      this.updateCart(course);
+      this.mainS.openModal(this.entry, "success", "Item will be added in cart!").subscribe(v => {
+        this.mainS.addToLocalStorage(course, "cartCourses");
+        this.updateCart(course);
+      });
+      
     } else {
       this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!").subscribe(v => {});
     }
@@ -92,9 +99,15 @@ export class WishlistComponent implements OnInit {
     let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
     // console.log("alreadyExist", alreadyExist);
     if(alreadyExist) {
-      this.mainS.deleteFromLocalStorage(course, "wishListedCourses");
-      this.fetchAllWishlistItems();
+      this.mainS.openModal(this.entry, "success", "Item will be deleted from wishlist!").subscribe(v => {
+        this.mainS.deleteFromLocalStorage(course, "wishListedCourses");
+        this.fetchAllWishlistItems();
+      });
     }
+  }
+
+  goToDetailPage(course: Course) {
+    this.router.navigate(['../courses', course.id], {relativeTo: this.route});
   }
 
   ngOnDestroy(): void {
