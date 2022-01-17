@@ -44,12 +44,13 @@ export class CartComponent implements OnInit {
     }
   }
 
-  addToWishlist(course: Course) {
+  moveToWishlist(course: Course) {
     let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
     if(!(alreadyExist)) {
-      this.mainS.addToLocalStorage(course, "wishListedCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in wishlist!").subscribe(v => {
-
+      this.mainS.openModal(this.entry, "success", "Item will be moved to wishlist!").subscribe(v => {
+        this.mainS.addToLocalStorage(course, "wishListedCourses");
+        this.mainS.deleteFromLocalStorage(course, "cartCourses");
+        this.fetchAllCartItems();
       });
     } else {
       this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!").subscribe(v => {
@@ -69,7 +70,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    this.mainS.openModal(this.entry, "success", "Items placed successfully!").subscribe(v => {
+    this.mainS.openModal(this.entry, "success", "All Items will be placed!").subscribe(v => {
       this.mainS.deleteAllCartItemsFromLocal("cartCourses");
       this.fetchAllCartItems();
     })

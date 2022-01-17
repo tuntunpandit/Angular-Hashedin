@@ -16,9 +16,9 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.mainS.getAllCartItems().subscribe(data => {
-      this.cartLength  = data.length;
-    });
+    // this.mainS.getAllCartItems().subscribe(data => {
+    //   this.cartLength  = data.length;
+    // });
   }
 
   toggleNavbar() {
