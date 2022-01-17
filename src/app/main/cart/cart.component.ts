@@ -48,9 +48,13 @@ export class CartComponent implements OnInit {
     let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
     if(!(alreadyExist)) {
       this.mainS.addToLocalStorage(course, "wishListedCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in wishlist!");
+      this.mainS.openModal(this.entry, "success", "Item added in wishlist!").subscribe(v => {
+
+      });
     } else {
-      this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!");
+      this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!").subscribe(v => {
+
+      });
     }
   }
 
@@ -60,6 +64,14 @@ export class CartComponent implements OnInit {
       this.mainS.deleteFromLocalStorage(course, "cartCourses");
       this.fetchAllCartItems();
     }
+  }
+
+  checkout() {
+    this.mainS.openModal(this.entry, "success", "Items placed successfully!").subscribe(v => {
+      // console.log("v", v);
+      this.mainS.deleteAllCartItemsFromLocal("cartCourses");
+      this.fetchAllCartItems();
+    })
   }
 
   ngOnDestroy(): void {

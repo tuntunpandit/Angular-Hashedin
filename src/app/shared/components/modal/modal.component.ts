@@ -17,7 +17,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() type: string = '';
   @Input() body: string = '';
   @Output() closeMeEvent = new EventEmitter();
-
+  @Output() confirmEvent = new EventEmitter();
+  
   ngOnInit(): void {
     console.log('Modal init');
   }
@@ -25,6 +26,10 @@ export class ModalComponent implements OnInit, OnDestroy {
   closeMe() {
     this.closeMeEvent.emit();
   }
+
+  confirm() {
+    this.confirmEvent.emit();
+  } 
 
   ngOnDestroy(): void {
     console.log('Modal destroyed');

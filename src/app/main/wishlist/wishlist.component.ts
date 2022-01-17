@@ -81,10 +81,10 @@ export class WishlistComponent implements OnInit {
     let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
     if(!(alreadyExist)) {
       this.mainS.addToLocalStorage(course, "cartCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in cart!");
+      this.mainS.openModal(this.entry, "success", "Item added in cart!").subscribe(v => {});
       this.updateCart(course);
     } else {
-      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!");
+      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!").subscribe(v => {});
     }
   }
 

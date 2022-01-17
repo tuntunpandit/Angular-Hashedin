@@ -78,21 +78,25 @@ export class CoursesComponent implements OnInit {
   addToCart(course: Course) {
     let alreadyExist = this.mainS.aLreadyExist(course, "cartCourses");
     if(!(alreadyExist)) {
-      this.mainS.addToLocalStorage(course, "cartCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in cart!");
-      this.updateCart(course);
+      this.mainS.openModal(this.entry, "success", "Item will be added in cart!").subscribe(v => {
+        this.mainS.addToLocalStorage(course, "cartCourses");
+        this.updateCart(course);
+      });
     } else {
-      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!");
+      this.sub = this.mainS.openModal(this.entry, "failure", "Item already exist in cart!").subscribe(v => {
+
+      });
     }
   }
 
   addToWishlist(course: Course) {
     let alreadyExist = this.mainS.aLreadyExist(course, "wishListedCourses");
     if(!(alreadyExist)) {
-      this.mainS.addToLocalStorage(course, "wishListedCourses");
-      this.mainS.openModal(this.entry, "success", "Item added in wishlist!");
+      this.mainS.openModal(this.entry, "success", "Item will be added in wishlist!").subscribe(v => {
+        this.mainS.addToLocalStorage(course, "wishListedCourses");
+      });
     } else {
-      this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!");
+      this.mainS.openModal(this.entry, "failure", "Item already exist in wishlist!").subscribe(v => {});
     }
   }
 

@@ -43,7 +43,7 @@
                             <p class="mb-1 title">Total Amount</p>
                             <p class="mb-0 cart-value"><span>{{allPrice.total | currency:'INR'}}</span> /-</p>
                             <p class="mb-0 saving">You have saved <span>{{allPrice.saved | currency:'INR'}}</span> /-</p>
-                            <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase">Checkout</button>
+                            <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase" (click)="checkout()">Checkout</button>
                         </div>
                     </div>
                 </div>

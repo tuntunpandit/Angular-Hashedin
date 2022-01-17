@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { Course } from '../model/courses';
-import { filter } from 'rxjs/operators';
 import { ModalService } from '../shared/components/modal/modal.service';
+import { catchError, filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,15 @@ export class MainService {
   }
 
   getCourseById(id: string): Observable<any> {
-    return this._http.get("./assets/user.json", {});
+    let found = this._http.get("./assets/data.json").pipe(
+      map(data => {
+         const jsonData = JSON.stringify(data);
+         return JSON.parse(jsonData).filter(d => d.id == id);
+      }),
+      // catchError(this.handleError)
+    );
+    console.log("F", found);
+    return found;
   }
 
   addToLocalStorage(course: Course, type) {
@@ -67,11 +75,11 @@ export class MainService {
   }
 
   openModal(entry, type, message) {
-    return this.modalS
-      .openModal(entry, type, message)
-      .subscribe((v) => {
+    return this.modalS.openModal(entry, type, message);
+  }
 
-      });
+  deleteAllCartItemsFromLocal(type: string) {
+    localStorage.removeItem(type);
   }
   
 }

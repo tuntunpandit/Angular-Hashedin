@@ -4,13 +4,16 @@
         <i class="fa fa-close float-end text-muted clickable" (click)="closeMe()"></i>
     </div>
     <div class="card-body">
-        <div class="body-wrapper d-flex flex-column justify-content-center align-items-center">
-          <div class="align-items-center d-flex py-3 text-wrapper">
+        <div class="body-wrapper">
+          <div class="align-items-center d-flex justify-content-center py-3 text-wrapper">
             <i class="fa fa-check-circle-o pe-2 text-success" *ngIf="type == 'success'"></i>
             <i class="fa fa-exclamation-triangle pe-2 text-danger" *ngIf="type == 'failure'"></i>
             <p class="mb-0 text-muted">{{ body }}</p>
           </div>
-          <button class="btn btn-sm btn-warning w-50 mt-2 text-white" (click)="closeMe()">Ok</button>
+          <div class="align-items-center d-flex gap-2 justify-content-center">
+            <button class="btn btn-sm btn-warning mt-2 text-white w-25" (click)="confirm()">Ok</button>
+            <button class="btn btn-outline-danger btn-sm mt-2 w-25" (click)="closeMe()">Cancel</button>
+          </div>
         </div>
     </div>
     </div>

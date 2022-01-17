@@ -45,8 +45,8 @@
                                 <p class="mb-0"><span>8 hrs </span>left for the price</p>
                             </div>
                             <div class="btn-arapper d-flex gap-2">
-                                <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase">Add to Cart</button>
-                                <button class="btn btn-sm btn-outline-warning mt-4 w-100 text-uppercase">Add to Wishlist</button>
+                                <button class="btn btn-sm btn-warning mt-4 w-100 text-white text-uppercase" (click)="addToCart(course)">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-warning mt-4 w-100 text-uppercase" (click)="addToWishlist(course)">Add to Wishlist</button>
                             </div>
                         </div>
                     </div>
@@ -56,4 +56,8 @@
                 
         </div>
     </div>
+</div>
+
+<div class="m-container">
+    <div #modal></div>
 </div>
