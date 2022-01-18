@@ -18,7 +18,7 @@ export class MainService {
 
   getUserProfileData(): Observable<any> {
     let localData = JSON.parse(localStorage.getItem("userData")) || {};
-    if(localData) {
+    if(!(Object.getOwnPropertyNames(localData).length === 0)) {
       return of(localData);
     } else {
       return this._http.get("./assets/user.json");
