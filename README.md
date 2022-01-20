@@ -32,7 +32,7 @@ Open your terminal and type these:
 2. `npm install`
 3. `ng serve -o`
 
-## Live Demo :  <a href="https://angular-hashedin-git-main-tuntunpandit.vercel.app/login">Click Here!</a>
+## Live Demo :  <a href="https://angular-hashedin-git-main-tuntunpandit.vercel.app/login" target="_blank">Click Here!</a>
 # Screeshots
 
 1. **Login Page**
